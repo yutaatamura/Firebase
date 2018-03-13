@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+    <script>
+    var config = {
+    apiKey: "AIzaSyBG3VQ5pXvLrkXWUoo_SOkrOWBvS-DKyG4",
+    authDomain: "project-12b66.firebaseapp.com",
+    databaseURL: "https://project-12b66.firebaseio.com",
+    projectId: "project-12b66",
+    storageBucket: "project-12b66.appspot.com",
+    messagingSenderId: "554851350621"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <title>Firebase App</title>
+</head>
+<body>
+
+    <div class="jumbotron">Train App</div>
+
+    <div class="container">
+    <div id="train-name-display"></div>
+    <div id="destination-display"></div>
+    <div id="train-time-display"></div>
+    <div id="frequency-display"></div>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Train Time</th>
+                <th>Frequency</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+
+
+
+
+        </thead>
+
+
+
+
+    </table>
+    </div>
+
+
+
+
+
+
+
+    <h3>Add Train</h3>
+    
+    <form role="form">
+        <div class="form-group">
+            <label for="train-name-input">Train Name: </label>
+            <input class="form-control" id="train-name-input" type="text">
+        </div>
+        <div class="form group">
+            <label for="destination-input">Destination: </label>
+            <input class="form-control" id="destination-input" type="text">
+        </div>
+        <div class="form-group">
+            <label for="first-time-input">First Train Time: </label>
+            <input class="form-control" id="first-time-input" type="time">
+        </div>
+        <div class="form-group">
+            <label for="frequency-input">Frequency: </label>
+            <input class="form-control" id="frequency-input" type="number">
+        </div>
+
+        <button class="btn btn-primary" id="add-train" type="submit">Submit</button>
+    </form>
+
+
+
+
+
+
+    
+    
+    <script type="text/javascript" src="./assets/javascript/firebase.js"></script>
+    
+</body>
+</html>
