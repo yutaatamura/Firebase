@@ -42,15 +42,16 @@
     <div class="jumbotron">Train App</div>
 
     <div class="container">
-    <div id="train-name-display"></div>
+    <!-- <div id="train-name-display"></div>
     <div id="destination-display"></div>
     <div id="train-time-display"></div>
-    <div id="frequency-display"></div>
+    <div id="frequency-display"></div> -->
 
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
+                <th>Check</th>
                 <th>Train Name</th>
                 <th>Destination</th>
                 <th>Train Time</th>
@@ -71,12 +72,6 @@
 
     </table>
     </div>
-
-
-
-
-
-
 
     <h3>Add Train</h3>
     
@@ -99,6 +94,8 @@
         </div>
 
         <button class="btn btn-primary" id="add-train" type="submit">Submit</button>
+
+        <button class="btn btn-danger" id="delete-train" type="submit">Delete</button>
     </form>
 
 
