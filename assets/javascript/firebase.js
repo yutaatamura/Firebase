@@ -21,6 +21,7 @@ trainName = $("#train-name-input").val().trim();
 destination = $("#destination-input").val().trim();
 firstTrainTime = $("#first-time-input").val().trim();
 frequency = $("#frequency-input").val().trim();
+
     console.log(trainName);
     console.log(destination);
     console.log(firstTrainTime);
@@ -41,41 +42,31 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
     var data = snapshot.val();
 
-    // var trainName = data.trainName;
-    // var destination = data.destination;
-    // var firstTrainTime = data.firstTrainTime;
-    // var frequency = data.frequency;
+    var trainName = data.trainName;
+    var destination = data.destination;
+    var firstTrainTime = data.firstTrainTime;
+    var frequency = data.frequency;
 
-    
-    // "<tr><td><input type='checkbox' name='index'><td id='train-name-dislay'>" + trainName +"</td><td id='destination-display'>" + destination + "</td><td id='train-time-display'>" + firstTrainTime + "</td><td id='frequency-display'>" + frequency + "</td></tr>"
     var row = $('<tr>');
-    var column = $('<td>');
-    var inputCol = $('<input>');
-    inputCol.attr("type", "checkbox");
-    inputCol.attr("name", "index");
-    var trainNameCol = $('<td>');
-    trainNameCol.attr("id", "train-name-display");
-    var destCol = $('<td>');
-    destCol.attr("id", "destination-display");
-    var firstTimeCol = $('<td>');
-    firstTimeCol.attr("id", "train-time-display");
-    var freqCol = $('<td>');
-    freqCol.attr("id", "frequency-display");
+
+    var inputCol = $('<td>').append($('<input>').attr({
+        type : "checkbox",
+        name : "index"
+        }));
+    
+    var trainNameCol = $('<td>'+ trainName + '</td>')
+    
+    var destCol = $('<td>' + destination + '</td>')
+
+    var firstTimeCol = $('<td>' + firstTrainTime + '</td>')
+
+    var freqCol = $('<td>' + frequency + '</td>')
     
     
-    row.append(column);
-    column.append(inputCol);
-    row.append(trainNameCol);
-    row.append(destCol);
-    row.append(firstTimeCol);
-    row.append(freqCol);
+    row.append(inputCol, trainNameCol, destCol, firstTimeCol, freqCol);
+    
     $("table tbody").append(row);
     
-
-    $("#train-name-display").text(data.trainName);
-    $("#destination-display").text(data.destination);
-    $("#train-time-display").text(data.firstTrainTime);
-    $("#frequency-display").text(data.frequency);
 
 }, function(errorObject) {
     console.log("Errors: " + errorObject.code);
@@ -89,30 +80,13 @@ $("#delete-train").on("click", function() {
     $("table tbody").find('input[name="index"]').each(function() {
         if($(this).is(":checked")) {
             $(this).parents("tr").remove();
+
+
         }
     })
 })
 
-// database.ref().on("value", function(snapshot){
 
-//     var data = snapshot.val();
-//     console.log(data);
-//     console.log(data.trainName);
-//     console.log(data.destination);
-//     console.log(data.firstTrainTime);
-//     console.log(data.frequency);
-
-//     //update HTML
-   
-//     $("#train-name-display").text(data.trainName);
-//     $("#destination-display").text(data.destination);
-//     $("#train-time-display").text(data.firstTrainTime);
-//     $("#frequency-display").text(data.frequency);
-    
-
-// }, function(err) {
-//     console.log("Error: " + err.code);
-// });
 
 
 
