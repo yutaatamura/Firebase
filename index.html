@@ -17,6 +17,8 @@
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
@@ -39,33 +41,32 @@
 </head>
 <body>
 
-    <div class="jumbotron">Train App</div>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">Train Sche-choo-ler</h1>
+        </div>
+    </div>
+
+    <div class="container"><span id="time"></span></div>
 
     <div class="container">
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Check</th>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Train Time</th>
-                <th>Frequency</th>
-            </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-
-
-
-
-        </thead>
-
-
-
-
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Check</th>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Train Time</th>
+                    <th>Frequency</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+            </thead>
+        </table>
     </div>
 
     <h3>Add Train</h3>
@@ -89,17 +90,9 @@
         </div>
 
         <button class="btn btn-primary" id="add-train" type="submit">Submit</button>
-
-        <button class="btn btn-danger" id="delete-train" type="submit">Delete</button>
     </form>
 
 
-
-
-
-
-    
-    
     <script type="text/javascript" src="./assets/javascript/firebase.js"></script>
     
 </body>

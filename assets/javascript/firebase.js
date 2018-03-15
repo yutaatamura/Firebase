@@ -8,7 +8,10 @@ var trainName = "";
 var destination = "";
 var firstTrainTime = "";
 var frequency = "";
-
+// var nextArrival = "";
+// var timeAway = "";
+var currentTime = moment().format("hh:mm A");
+$('#time').text(currentTime);
 
 //at initial load and any data value changes, get snapshot of current data. 
 
@@ -22,48 +25,75 @@ destination = $("#destination-input").val().trim();
 firstTrainTime = $("#first-time-input").val().trim();
 frequency = $("#frequency-input").val().trim();
 
+$("#train-name-input").val('');
+$("#destination-input").val('');
+$("#first-time-input").val('');
+$("#frequency-input").val('');
+
     console.log(trainName);
     console.log(destination);
     console.log(firstTrainTime);
     console.log(frequency);
 
-    database.ref().push( {
+    database.ref('train').push( {
         trainName : trainName,
         destination : destination,
         firstTrainTime : firstTrainTime,
-        frequency : frequency,
+        frequency : frequency, 
         dateAdded : firebase.database.ServerValue.TIMESTAMP
-    });
-
-    
+    }); 
 });
 
-database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+database.ref('train').orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
 
-    var data = snapshot.val();
+    var data = childSnapshot.val();
 
-    var trainName = data.trainName;
-    var destination = data.destination;
-    var firstTrainTime = data.firstTrainTime;
-    var frequency = data.frequency;
+    var name = data.trainName;
+    var dest = data.destination;
+    var start = data.firstTrainTime;
+    var freq = data.frequency;
+    var key = childSnapshot.key;
+    console.log("key= "+key)
 
-    var row = $('<tr>');
+    var startConverted = moment(start, "hh:mm A").subtract(1, "years");
+    console.log(startConverted);
 
-    var inputCol = $('<td>').append($('<input>').attr({
-        type : "checkbox",
-        name : "index"
+    console.log("Current time: "+ moment().format("hh:mm A"));
+
+    var diffTime = moment().diff(moment(startConverted, "hh:mm A"), "minutes");
+    console.log("time difference= "+diffTime);
+
+    var timeRemain = diffTime % freq;
+    console.log("remaining time= "+timeRemain);
+
+    var timeAway = freq - timeRemain; 
+    console.log("time away: "+timeAway)
+
+    var timeNext = moment().add(timeAway, "minutes").format("hh:mm");
+    console.log("Arrival time: "+timeNext)
+
+    var row = $('<tr>').addClass(key);
+
+
+    var deleteBtn = $('<td>').append($('<button>Delete</button>').attr({
+        class : "btn btn-danger deleteBtn",
+        dataKey : key
         }));
     
-    var trainNameCol = $('<td>'+ trainName + '</td>')
+    var trainNameCol = $('<td>'+ name + '</td>')
     
-    var destCol = $('<td>' + destination + '</td>')
+    var destCol = $('<td>' + dest + '</td>')
 
-    var firstTimeCol = $('<td>' + firstTrainTime + '</td>')
+    var firstTimeCol = $('<td>' + start + '</td>')
 
-    var freqCol = $('<td>' + frequency + '</td>')
+    var freqCol = $('<td>' + freq + '</td>')
+
+    var timeNextCol = $('<td>' + timeNext + '</td>')
+
+    var timeAwayCol = $('<td>' + timeAway +'</td>')
     
     
-    row.append(inputCol, trainNameCol, destCol, firstTimeCol, freqCol);
+    row.append(deleteBtn, trainNameCol, destCol, firstTimeCol, freqCol, timeNextCol, timeAwayCol);
     
     $("table tbody").append(row);
     
@@ -72,21 +102,15 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     console.log("Errors: " + errorObject.code);
 });
 
+
+
+$(document).on("click", ".deleteBtn", function() {
+    var key = $(this).attr("dataKey");
+    database.ref("train/" + key).remove();
+    $('.'+ key).remove();
 })
 
-$("#delete-train").on("click", function() {
-
-    event.preventDefault();
-    $("table tbody").find('input[name="index"]').each(function() {
-        if($(this).is(":checked")) {
-            $(this).parents("tr").remove();
-
-
-        }
-    })
 })
-
-
 
 
 
