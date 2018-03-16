@@ -18,7 +18,7 @@ $('#time').text(currentTime);
 
 //click event for submit button 
 $("#add-train").on("click", function() {
-    event.preventDefault();
+event.preventDefault();
     
 trainName = $("#train-name-input").val().trim();
 destination = $("#destination-input").val().trim();
@@ -44,7 +44,9 @@ $("#frequency-input").val('');
     }); 
 });
 
-database.ref('train').orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
+
+
+database.ref('train').orderByChild("dateAdded").on("child_added", function(childSnapshot) {
 
     var data = childSnapshot.val();
 
@@ -103,7 +105,7 @@ database.ref('train').orderByChild("dateAdded").limitToLast(1).on("child_added",
 });
 
 
-
+//delete the train row 
 $(document).on("click", ".deleteBtn", function() {
     var key = $(this).attr("dataKey");
     database.ref("train/" + key).remove();
