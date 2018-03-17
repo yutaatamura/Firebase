@@ -62,7 +62,7 @@ database.ref('train').orderByChild("dateAdded").on("child_added", function(child
 
     console.log("Current time: "+ moment().format("hh:mm A"));
 
-    var diffTime = moment().diff(moment(startConverted, "hh:mm A"), "minutes");
+    var diffTime = moment().diff(moment.unix(startConverted, "minutes"));
     console.log("time difference= "+diffTime);
 
     var timeRemain = diffTime % freq;
@@ -71,7 +71,7 @@ database.ref('train').orderByChild("dateAdded").on("child_added", function(child
     var timeAway = freq - timeRemain; 
     console.log("time away: "+timeAway)
 
-    var timeNext = moment().add(timeAway, "minutes").format("hh:mm");
+    var timeNext = moment().add(timeAway, "minutes").format("hh:mm A");
     console.log("Arrival time: "+timeNext)
 
     var row = $('<tr>').addClass(key);
