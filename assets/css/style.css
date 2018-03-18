@@ -17,6 +17,15 @@
 }
 
 #add-train {
-    
+    height: 50%;
+}
+
+form {
+    margin-left: 10%;
+    margin-right: 10%
+}
+
+h3 {
+    margin-left: 10%;
 }
 
