@@ -10,8 +10,14 @@ var firstTrainTime = "";
 var frequency = "";
 // var nextArrival = "";
 // var timeAway = "";
-var currentTime = moment().format("hh:mm A");
-$('#time').text(currentTime);
+
+//show current time clock
+function showCurrentTime() {
+    var currentTime = moment().format("hh:mm:ss A");
+    $("#time").html(currentTime);
+    setInterval(showCurrentTime, 1000);
+}
+showCurrentTime();
 
 //at initial load and any data value changes, get snapshot of current data. 
 
