@@ -10,6 +10,8 @@
 #time {
     font-weight: bold;
     font-size: 32px;
+    /* border: black 2px solid;  */
+    padding: 15px;
 }
 
 .table {
@@ -27,5 +29,12 @@ form {
 
 h3 {
     margin-left: 10%;
+}
+
+.jumbotron {
+    background-image: url("https://images.alphacoders.com/546/546898.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 

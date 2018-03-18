@@ -64,8 +64,11 @@ database.ref('train').orderByChild("dateAdded").on("child_added", function(child
     console.log("key= "+key)
 
     var startConverted = moment(start, "hh:mm A").subtract(1, "years");
-    console.log(startConverted);
+    console.log(startConverted);    
 
+    var startDisplay = moment(startConverted).format("hh:mm A");
+    
+   
     console.log("Current time: "+ moment().format("hh:mm A"));
 
     var diffTime = moment().diff(moment.unix(startConverted, "minutes"));
@@ -92,7 +95,7 @@ database.ref('train').orderByChild("dateAdded").on("child_added", function(child
     
     var destCol = $('<td>' + dest + '</td>')
 
-    var firstTimeCol = $('<td>' + start + '</td>')
+    var firstTimeCol = $('<td>' + startDisplay + '</td>')
 
     var freqCol = $('<td>' + freq + '</td>')
 
